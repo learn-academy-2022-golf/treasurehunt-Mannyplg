@@ -15,20 +15,29 @@ const App = () => {
     "?"
   ])
 
+  const handleGamePlay = (index) => {
+    let updatedBoard = [...board]
+        setBoard(updatedBoard)
+  }
+
+
   return (
     <>
       <h1>Treasure Hunt Game</h1>
       <div className="gameboard">
-        {board.map((value, index) => 
+        {board.map((value, index) => {
+        return (
           <Square
            value={value}
             key={index}
+            index={index}
+            handleGamePlay={handleGamePlay}
            />
           )
-        }
+})}
       </div>
     </>
   )
-}
 
+}
 export default App
