@@ -14,11 +14,24 @@ const App = () => {
     "?",
     "?"
   ])
+  const [treasureLocation, setTreasureLocation] = useState(Math.floor(Math.random() * board.length))
+  const [bombLocation, setBombLocation] = useState(Math.floor(Math.random() * board.length))
 
   const handleGamePlay = (index) => {
     let updatedBoard = [...board]
-        setBoard(updatedBoard)
+    if(index === treasureLocation) {
+      // updating a single instance of the copied array to treasure emoji
+      updatedBoard[index] = "💎"
+      // setting entire updated board to state
+      setBoard(updatedBoard)
+    } else if(index === bombLocation) {
+      updatedBoard[index] = "💣"
+      setBoard(updatedBoard)
+    } else {
+      updatedBoard[index] = "🌴"
+      setBoard(updatedBoard)
   }
+}
 
 
   return (
@@ -34,10 +47,9 @@ const App = () => {
             handleGamePlay={handleGamePlay}
            />
           )
-})}
+        })}
       </div>
     </>
   )
-
 }
 export default App
